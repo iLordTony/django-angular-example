@@ -1,0 +1,25 @@
+{
+  "name": "django-angular-example",
+  "version": "1.0.0",
+  "description": "This is an example for use django and angularjs by APIRest",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iLordTony/django-angular-example.git"
+  },
+  "keywords": [
+    "django",
+    "angular",
+    "example",
+    "APIRest"
+  ],
+  "author": "Carlos Tonatihu <carlostonatihu@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iLordTony/django-angular-example/issues"
+  },
+  "homepage": "https://github.com/iLordTony/django-angular-example#readme"
+}
