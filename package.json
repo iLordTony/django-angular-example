@@ -21,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/iLordTony/django-angular-example/issues"
   },
-  "homepage": "https://github.com/iLordTony/django-angular-example#readme"
+  "homepage": "https://github.com/iLordTony/django-angular-example#readme",
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "gulp": "^3.9.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "angular": "^1.4.5"
+  }
 }
