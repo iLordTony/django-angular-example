@@ -1,26 +1,16 @@
-from django.contrib.auth.models import User
+from api.models import User, Post
 from rest_framework import serializers
-from api.models import Post, Photo
 
-class UserSerializer(serializers.ModelSerializer):
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    post = serializers.HyperlinkedIdentityField(view_name='userpost-list', lookup_field='username')
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'username',)
-
-
-class PhotoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Photo
+        fields = ('id','email', 'first_name', 'last_name', 'username', 'post')
 
 class PostSerializer(serializers.ModelSerializer):
-    author = UserSerializer(required=False) #hacemos esto para que pueda leer el campo author
-    photos = PhotoSerializer(required=False)
+    author = UserSerializer(required=False)
 
     class Meta:
         model = Post
-        fields = ('title','author', 'body', 'photos',)
-
-
-
-
