@@ -1,22 +1,19 @@
-from rest_framework import viewsets
 # Create your views here.
-from api.serializers import UserSerializer, PostSerializer
-from api.models import User, Post
 from rest_framework import generics
+
+from api.serializers import UserSerializer, PostSerializer, PhotoSerializer
+from api.models import User, Post, Photo
+
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-
-
-class PostList(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'username'
 
 
 class UserPostList(generics.ListAPIView):
@@ -24,10 +21,32 @@ class UserPostList(generics.ListAPIView):
 
     def get_queryset(self):
         username = self.kwargs.get('username')
+
         return Post.objects.filter(author__username=username)
 
 
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    lookup_field = 'username'
+class PostList(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+class PostPhotoList(generics.ListAPIView):
+    serializer_class = PhotoSerializer
+
+    def get_queryset(self):
+        return Photo.objects.filter(post__pk=self.kwargs.get('pk'))
+
+
+class PhotoList(generics.ListCreateAPIView):
+    serializer_class = PhotoSerializer
+    queryset = Photo.objects.all()
+
+
+class PhotoDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PhotoSerializer
+    queryset = Photo.objects.all()
