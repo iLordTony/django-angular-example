@@ -1,9 +1,11 @@
 # Create your views here.
+from django.views.generic import TemplateView
 from rest_framework import generics
 
 from api.serializers import UserSerializer, PostSerializer, PhotoSerializer
 from api.models import User, Post, Photo
 
+# Todas las vistas del API
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
@@ -50,3 +52,7 @@ class PhotoList(generics.ListCreateAPIView):
 class PhotoDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PhotoSerializer
     queryset = Photo.objects.all()
+
+
+class IndexTemplateView(TemplateView):
+    template_name = 'index.html'
