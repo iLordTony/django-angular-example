@@ -1,10 +1,24 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>El index perros</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static "public/css/app.css" %}"/>
 </head>
-<body>
-
+<body ng-app="example">
+  <div ng-controller="AppController">
+    {% verbatim %}
+    <div ng-repeat="post in posts">
+      <div>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.author.username }}</p>
+      </div>
+      <p>{{ post.body }}</p>
+    </div>
+    {% endverbatim %}
+  </div>
 </body>
+    <script src="{% static "public/app.js" %}"></script>
 </html>
