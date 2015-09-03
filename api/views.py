@@ -55,11 +55,16 @@ class PhotoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Photo.objects.all()
 
 
+"""Aqui terminan las vistas del API, estas son todas las vista en web"""
+
+
 class IndexTemplateView(TemplateView):
     template_name = 'index.html'
 
 
+# Rendereamos deacuerdo a la url que a la que se le da click
 class SimpleStaticView(TemplateView):
+    # Lo usamos en lugar de un template_name
     def get_template_names(self):
         print self.kwargs.get('template_name')
         return [self.kwargs.get('template_name') + ".html"]
