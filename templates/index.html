@@ -11,11 +11,41 @@
   <div class="Content">
     <h1>Ejemplos del uso de Angular con Django</h1>
     <ol>
-      <li><a href="{% url "example" template_name='static'%}">Hard Coded Example</a></li>
-      <li><a href="{% url "example" template_name='basic' %}">Basic Ajax Example</a></li>
-      <li><a href="{% url "example" template_name='resource' %}">Angular Resource Example</a></li>
-      <li><a href="{% url "example" template_name='photos' %}">Photos Example</a></li>
-      <li><a href="{% url "example" template_name='editor' %}">Editor Example</a></li>
+      <li>
+        {% if request.get_full_path == '/static' %}
+          <a href="{% url "example" template_name='static' %}" class="active">Hard coded Example</a>
+        {% else %}
+          <a href="{% url "example" template_name='static' %}">Hard coded Example</a>
+        {% endif %}
+      </li>
+      <li>
+        {% if request.get_full_path == '/basic' %}
+          <a href="{% url "example" template_name='basic' %}" class="active">Basic Ajax Example</a>
+        {% else %}
+          <a href="{% url "example" template_name='basic' %}">Basic Ajax Example</a>
+        {% endif %}
+      </li>
+      <li>
+        {% if request.get_full_path == '/resource' %}
+          <a href="{% url "example" template_name='resource' %}" class="active">Angular Resource Example</a>
+        {% else %}
+          <a href="{% url "example" template_name='resource' %}">Angular Resource Example</a>
+        {% endif %}
+      </li>
+      <li>
+        {% if request.get_full_path == '/photos' %}
+          <a href="{% url "example" template_name='photos' %}" class="active">Photos Example</a>
+        {% else %}
+          <a href="{% url "example" template_name='photos' %}">Photos Example</a>
+        {% endif %}
+      </li>
+      <li>
+        {% if request.get_full_path == '/editor' %}
+          <a href="{% url "example" template_name='editor' %}" class="active">Editor Example</a>
+        {% else %}
+          <a href="{% url "example" template_name='editor' %}">Editor Example</a>
+        {% endif %}
+      </li>
     </ol>
     {% block content %}
     {% endblock %}
