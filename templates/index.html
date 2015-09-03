@@ -7,18 +7,13 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static "public/css/app.css" %}"/>
 </head>
-<body ng-app="example">
-  <div ng-controller="AppController">
-    {% verbatim %}
-    <div ng-repeat="post in posts">
-      <div>
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.author.username }}</p>
-      </div>
-      <p>{{ post.body }}</p>
-    </div>
-    {% endverbatim %}
-  </div>
+<body>
+  <ol>
+    <li><a href="{% url "example" template_name='harcode'%}">Hard Coded Example</a></li>
+    <li><a href="{% url "example" template_name='basic' %}">Basic Ajax Example</a></li>
+    <li><a href="{% url "example" template_name='resource' %}">Angular Resource Example</a></li>
+    <li><a href="{% url "example" template_name='photos' %}">Photos Example</a></li>
+    <li><a href="{% url "example" template_name='editor' %}">Editor Example</a></li>
+</ol>
 </body>
-    <script src="{% static "public/app.js" %}"></script>
 </html>

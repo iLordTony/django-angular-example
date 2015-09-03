@@ -17,13 +17,14 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from api.views import IndexTemplateView
+from api.views import IndexTemplateView, SimpleStaticView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/v1/', include('api.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^$', IndexTemplateView.as_view(), name='home')
+    url(r'^$', IndexTemplateView.as_view(), name='home'),
+    url(r'^(?P<template_name>\w+)$', SimpleStaticView.as_view(), name='example'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

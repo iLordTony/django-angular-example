@@ -7,6 +7,7 @@ from api.models import User, Post, Photo
 
 # Todas las vistas del API
 
+
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -56,3 +57,9 @@ class PhotoDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class IndexTemplateView(TemplateView):
     template_name = 'index.html'
+
+
+class SimpleStaticView(TemplateView):
+    def get_template_names(self):
+        print self.kwargs.get('template_name')
+        return [self.kwargs.get('template_name') + ".html"]
