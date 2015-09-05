@@ -7,7 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static "public/css/app.css" %}"/>
 </head>
-<body>
+<body ng-app="{% block ng-app-name%} {% endblock %}">
   <div class="Content">
     <h1>Ejemplos del uso de Angular con Django</h1>
     <ol>
@@ -47,9 +47,12 @@
         {% endif %}
       </li>
     </ol>
-    {% block content %}
-    {% endblock %}
+    <div class="Controller" ng-controller="{% block ng-controller%} {% endblock %}">
+      {% block content %}
+        <h2>Da click en algun item del menu para ver los ejemplos</h2>
+      {% endblock %}
+    </div>
   </div>
-
+  <script src="{% static "public/app.js" %}" charset="utf-8"></script>
 </body>
 </html>
