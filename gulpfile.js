@@ -14,6 +14,8 @@ var nib = require('nib'); // Para poder usar mixins y cosas asi
 var concat = require('gulp-concat-css'); // Compilar todo en un archivo
 var minify = require('gulp-minify-css'); // Minifica el css duh!
 
+gulp.task('build', ['styl', 'js']);
+
 gulp.task('styl', function() {
     return gulp.src('./static/app/app.styl')
         .pipe(stylus({use: nib()}))
@@ -29,5 +31,6 @@ gulp.task('js', function () {
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest('./static/public'));
 });

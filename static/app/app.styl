@@ -4,14 +4,27 @@ a
     text-decoration none
     color black
     &:hover
-        text-decoration underline
+        border-top 2px solid green
     &.active
-        color green
-        font-weight bold
+        border-top 2px solid red
 
 body
     font-family Roboto
     background #f4f4f4
+
+.Menu
+    text-align right
+    &-list
+        list-style none
+        padding 0
+    &-item
+        display inline-block
+        &::after
+            content " | "
+        &:last-child::after
+            content ""
+        a
+            padding 0.2em
 
 .Content
     margin 0 auto
@@ -25,5 +38,8 @@ body
     border-radius 4px
     margin-bottom 1em
     box-shadow 0 3px 6px 0 rgba(0, 0, 0, 0.16)
+    &-author
+        font-style italic
+        font-weight bold
     &-body
         margin-left: 1em

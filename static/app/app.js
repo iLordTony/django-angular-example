@@ -6,3 +6,8 @@
 // Se requiren las dependencias necesario ya que las usa el app.js
 require('./static/controllers.js');
 require('./static/app.js'); // Se require el app
+
+// Modulo basic
+require('./basic/services');
+require('./basic/controllers');
+require('./basic/app');

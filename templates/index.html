@@ -10,43 +10,46 @@
 <body ng-app="{% block ng-app-name%} {% endblock %}">
   <div class="Content">
     <h1>Ejemplos del uso de Angular con Django</h1>
-    <ol>
-      <li>
-        {% if request.get_full_path == '/static' %}
-          <a href="{% url "example" template_name='static' %}" class="active">Hard coded Example</a>
-        {% else %}
-          <a href="{% url "example" template_name='static' %}">Hard coded Example</a>
-        {% endif %}
-      </li>
-      <li>
-        {% if request.get_full_path == '/basic' %}
-          <a href="{% url "example" template_name='basic' %}" class="active">Basic Ajax Example</a>
-        {% else %}
-          <a href="{% url "example" template_name='basic' %}">Basic Ajax Example</a>
-        {% endif %}
-      </li>
-      <li>
-        {% if request.get_full_path == '/resource' %}
-          <a href="{% url "example" template_name='resource' %}" class="active">Angular Resource Example</a>
-        {% else %}
-          <a href="{% url "example" template_name='resource' %}">Angular Resource Example</a>
-        {% endif %}
-      </li>
-      <li>
-        {% if request.get_full_path == '/photos' %}
-          <a href="{% url "example" template_name='photos' %}" class="active">Photos Example</a>
-        {% else %}
-          <a href="{% url "example" template_name='photos' %}">Photos Example</a>
-        {% endif %}
-      </li>
-      <li>
-        {% if request.get_full_path == '/editor' %}
-          <a href="{% url "example" template_name='editor' %}" class="active">Editor Example</a>
-        {% else %}
-          <a href="{% url "example" template_name='editor' %}">Editor Example</a>
-        {% endif %}
-      </li>
-    </ol>
+    <nav class="Menu">
+      <ol class="Menu-list">
+        <li class="Menu-item">
+          {% if request.get_full_path == '/static' %}
+            <a href="{% url "example" template_name='static' %}" class="active">Hard coded Example</a>
+          {% else %}
+            <a href="{% url "example" template_name='static' %}">Hard coded Example</a>
+          {% endif %}
+        </li>
+        <li class="Menu-item">
+          {% if request.get_full_path == '/basic' %}
+            <a href="{% url "example" template_name='basic' %}" class="active">Basic Ajax Example</a>
+          {% else %}
+            <a href="{% url "example" template_name='basic' %}">Basic Ajax Example</a>
+          {% endif %}
+        </li>
+        <li class="Menu-item">
+          {% if request.get_full_path == '/resource' %}
+            <a href="{% url "example" template_name='resource' %}" class="active">Angular Resource Example</a>
+          {% else %}
+            <a href="{% url "example" template_name='resource' %}">Angular Resource Example</a>
+          {% endif %}
+        </li>
+        <li class="Menu-item">
+          {% if request.get_full_path == '/photos' %}
+            <a href="{% url "example" template_name='photos' %}" class="active">Photos Example</a>
+          {% else %}
+            <a href="{% url "example" template_name='photos' %}">Photos Example</a>
+          {% endif %}
+        </li>
+        <li class="Menu-item">
+          {% if request.get_full_path == '/editor' %}
+            <a href="{% url "example" template_name='editor' %}" class="active">Editor Example</a>
+          {% else %}
+            <a href="{% url "example" template_name='editor' %}">Editor Example</a>
+          {% endif %}
+        </li>
+      </ol>
+    </nav>
+
     <div class="Controller" ng-controller="{% block ng-controller%} {% endblock %}">
       {% block content %}
         <h2>Da click en algun item del menu para ver los ejemplos</h2>
