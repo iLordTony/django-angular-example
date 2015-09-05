@@ -28695,14 +28695,19 @@ module.exports = angular;
 /**
  * Created by Carlos Tonatihu on 01/09/2015.
  */
+require('./static/controllers.js')
 require('./static/app.js');
 
-},{"./static/app.js":4}],4:[function(require,module,exports){
+},{"./static/app.js":4,"./static/controllers.js":5}],4:[function(require,module,exports){
 var angular = require('angular');
 
-var app = angular.module('example.static', []);
+var app = angular.module('example.static', ['example.static.controllers']);
 
-app.controller('StaticController', ['$scope', function ($scope) {
+},{"angular":2}],5:[function(require,module,exports){
+//542
+var angular = require('angular');
+angular.module('example.static.controllers', [])
+.controller('StaticController', ['$scope', function ($scope) {
     $scope.posts = [
         {
             title: "Este es el titulo 1 hardcodeado",
