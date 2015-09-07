@@ -16,3 +16,8 @@ require('./basic/app');
 require('./resource/services');
 require('./resource/controllers');
 require('./resource/app');
+
+// Modulo photos
+require('./photos/services');
+require('./photos/controllers');
+require('./photos/app');

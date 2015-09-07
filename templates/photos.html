@@ -1,5 +1,18 @@
 {% extends 'index.html' %}
 
+{% block ng-app-name %}example.photos{% endblock %}
+
+{% block ng-controller %}PhotosController{% endblock %}
+
 {% block content %}
-  <h2>Photos</h2>
+{% verbatim %}
+  <article class="Post" ng-repeat="post in posts">
+    <h3>{{post.title}}</h3>
+    <p>By: <span class="Post-author">{{post.author.username}}</span></p>
+    <p class="Post-body">{{post.body}}</p>
+    <figure ng-repeat="photo in photos[post.id]">
+      <img src="{{photo.image}}" alt="" />
+    </figure>
+  </article>
+{% endverbatim %}
 {% endblock %}

@@ -29392,7 +29392,12 @@ require('./resource/services');
 require('./resource/controllers');
 require('./resource/app');
 
-},{"./basic/app":6,"./basic/controllers":7,"./basic/services":8,"./resource/app":9,"./resource/controllers":10,"./resource/services":11,"./static/app":12,"./static/controllers":13}],6:[function(require,module,exports){
+// Modulo photos
+require('./photos/services');
+require('./photos/controllers');
+require('./photos/app');
+
+},{"./basic/app":6,"./basic/controllers":7,"./basic/services":8,"./photos/app":9,"./photos/controllers":10,"./photos/services":11,"./resource/app":12,"./resource/controllers":13,"./resource/services":14,"./static/app":15,"./static/controllers":16}],6:[function(require,module,exports){
 var angular = require('angular');
 var app = angular.module('example.basic', ['example.basic.controllers',
 'example.basic.services']);
@@ -29427,9 +29432,44 @@ angular.module('example.basic.services', [])
 
 },{"angular":4}],9:[function(require,module,exports){
 var angular = require('angular');
-var app = angular.module('example.api', ['example.api.services', 'example.api.controllers']);
+var app = angular.module('example.photos', ['example.photos.services', 'example.photos.controllers']);
 
 },{"angular":4}],10:[function(require,module,exports){
+var angular = require('angular');
+angular.module('example.photos.controllers', ['example.api.services'])
+    .controller('PhotosController', ['$scope', 'postService', 'postPhotoService', function ($scope, postService, postPhotoService) {
+        $scope.photos = {};
+        $scope.posts = postService.query();
+        $scope.posts.$promise.then(function (data) {
+            angular.forEach(data, function (post) {
+                postPhotoService.query({post_id: post.id}, function (data) {
+                    $scope.photos[post.id] = data;
+                    debugger;
+                });
+            });
+        });
+
+    }]);
+
+},{"angular":4}],11:[function(require,module,exports){
+var angular = require('angular');
+require('angular-resource');
+
+var services = angular.module('example.photos.services', ['ngResource']);
+
+services.factory('userPostService', ['$resource', function ($resource) {
+    return $resource('/api/v1/:username/posts/:id');
+}]);
+
+services.factory('postPhotoService', ['$resource', function ($resource) {
+    return $resource('/api/v1/posts/:post_id/photos/:id');
+}]);
+
+},{"angular":4,"angular-resource":2}],12:[function(require,module,exports){
+var angular = require('angular');
+var app = angular.module('example.api', ['example.api.services', 'example.api.controllers']);
+
+},{"angular":4}],13:[function(require,module,exports){
 var angular = require('angular');
 
 angular.module('example.api.controllers', [])
@@ -29437,12 +29477,10 @@ angular.module('example.api.controllers', [])
         $scope.posts = {};
         postService.query(function (data) {
             $scope.posts = data;
-            debugger;
-            console.log($scope.posts);
         });
     }]);
 
-},{"angular":4}],11:[function(require,module,exports){
+},{"angular":4}],14:[function(require,module,exports){
 var angular = require('angular');
 require('angular-resource');
 
@@ -29452,12 +29490,12 @@ service.factory('postService', ['$resource', function ($resource) {
         return $resource('/api/v1/posts/:id');
     }]);
 
-},{"angular":4,"angular-resource":2}],12:[function(require,module,exports){
+},{"angular":4,"angular-resource":2}],15:[function(require,module,exports){
 var angular = require('angular'); // Se require gracias a browserify
 // Esto indica el nombre del app y las dependencias que usa
 var app = angular.module('example.static', ['example.static.controllers']);
 
-},{"angular":4}],13:[function(require,module,exports){
+},{"angular":4}],16:[function(require,module,exports){
 var angular = require('angular');
 // Esto sera una dependencia controllardor
 angular.module('example.static.controllers', [])
