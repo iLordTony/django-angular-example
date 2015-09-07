@@ -4,10 +4,15 @@
 // Para el modulo static
 
 // Se requiren las dependencias necesario ya que las usa el app.js
-require('./static/controllers.js');
-require('./static/app.js'); // Se require el app
+require('./static/controllers');
+require('./static/app'); // Se require el app
 
 // Modulo basic
 require('./basic/services');
 require('./basic/controllers');
 require('./basic/app');
+
+// Modulo resource
+require('./resource/services');
+require('./resource/controllers');
+require('./resource/app');

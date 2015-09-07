@@ -31,6 +31,5 @@ gulp.task('js', function () {
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
-    .pipe(uglify())
     .pipe(gulp.dest('./static/public'));
 });

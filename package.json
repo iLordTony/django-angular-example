@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/iLordTony/django-angular-example#readme",
   "devDependencies": {
+    "angular-resource": "^1.4.5",
     "browserify": "^11.0.1",
     "gulp": "^3.9.0",
     "gulp-concat-css": "^2.2.0",

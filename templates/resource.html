@@ -1,5 +1,15 @@
 {% extends 'index.html' %}
 
+{% block ng-app-name %}example.api{% endblock %}
+
+{% block ng-controller %}ResourceController{% endblock %}
+
 {% block content %}
-  <h2>Resoruce</h2>
+{% verbatim %}
+  <article class="Post" ng-repeat="post in posts">
+    <h3>{{post.title}}</h3>
+    <p>By: <span class="Post-author">{{post.author.username}}</span></p>
+    <p class="Post-body">{{post.body}}</p>
+  </article>
+{% endverbatim %}
 {% endblock %}
