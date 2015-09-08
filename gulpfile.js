@@ -17,11 +17,11 @@ var minify = require('gulp-minify-css'); // Minifica el css duh!
 gulp.task('build', ['styl', 'js']);
 
 gulp.task('styl', function() {
-    return gulp.src('./static/app/app.styl')
-        .pipe(stylus({use: nib()}))
-        .pipe(concat('app.css'))
-        .pipe(minify())
-        .pipe(gulp.dest('./static/public/css'));
+    return styl();
+});
+
+gulp.task('styl:watch', function () {
+    return gulp.watch(['./static/app/app.styl', './static/app/**/*.styl'], ['styl']);
 });
 
 gulp.task('js', function () {
@@ -31,5 +31,15 @@ gulp.task('js', function () {
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest('./static/public'));
 });
+
+function styl() {
+    console.log('Realizando cambios');
+    return gulp.src('./static/app/app.styl')
+        .pipe(stylus({use: nib()}))
+        .pipe(concat('app.css'))
+        .pipe(minify())
+        .pipe(gulp.dest('./static/public/css'));
+}

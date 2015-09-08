@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "styl": "gulp styl",
     "js": "gulp js",
-    "build": "gulp build"
+    "build": "gulp build",
+    "styl:watch": "gulp styl:watch"
   },
   "repository": {
     "type": "git",

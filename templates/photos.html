@@ -10,8 +10,8 @@
     <h3>{{post.title}}</h3>
     <p>By: <span class="Post-author">{{post.author.username}}</span></p>
     <p class="Post-body">{{post.body}}</p>
-    <figure ng-repeat="photo in photos[post.id]">
-      <img src="{{photo.image}}" alt="" />
+    <figure ng-repeat="photo in photos[post.id]" class="Post-image">
+      <img src="{{photo.image}}" alt="Photo" width="250" height="250"/>
     </figure>
   </article>
 {% endverbatim %}
