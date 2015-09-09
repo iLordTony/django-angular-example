@@ -5,6 +5,8 @@ from rest_framework import generics
 from api.serializers import UserSerializer, PostSerializer, PhotoSerializer
 from api.models import User, Post, Photo
 
+from api.permissions import PostAuthorCanEditPermission
+
 # Todas las vistas del API
 
 
@@ -28,14 +30,23 @@ class UserPostList(generics.ListAPIView):
         return Post.objects.filter(author__username=username)
 
 
-class PostList(generics.ListCreateAPIView):
+class PostMixin(object):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [PostAuthorCanEditPermission, ]
+
+    def pre_save(self, obj):
+        print 'Algo'
+        obj.author = self.request.user
+        return super(PostMixin, self).pre_save(obj)
 
 
-class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class PostList(PostMixin, generics.ListCreateAPIView):
+    pass
+
+
+class PostDetail(PostMixin, generics.RetrieveUpdateDestroyAPIView):
+    pass
 
 
 class PostPhotoList(generics.ListAPIView):

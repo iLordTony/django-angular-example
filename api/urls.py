@@ -25,5 +25,5 @@ photos_urls = [
 urlpatterns = [
     url(r'^users/', include(users_urls)),
     url(r'^posts/', include(posts_urls)),
-    url(r'photos/', include(photos_urls)),
+    url(r'^photos/', include(photos_urls)),
 ]
